@@ -37,6 +37,7 @@
     <profiles>
         <profile>
             <activation>
+                <activeByDefault>false</activeByDefault>
                 <os>
                     <family>mac</family>
                 </os>
@@ -57,9 +58,12 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <executable>gcc</executable>
+                            <executable>o64-clang</executable>
                             <workingDirectory>${basedir}/src/main/native</workingDirectory>
                             <arguments>
+                                <argument>-O3</argument>
+                                <argument>-arch i386</argument>
+                                <argument>-arch x86_64</argument>
                                 <argument>-shared</argument>
                                 <argument>-o</argument>
                                 <argument>../resources/libmccs.dylib</argument>

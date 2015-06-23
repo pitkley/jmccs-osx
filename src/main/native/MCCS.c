@@ -97,6 +97,7 @@ bool DisplayRequest(CGDirectDisplayID displayID, IOI2CRequest *request) {
     dispatch_semaphore_signal(queue);
     return result && request->result == KERN_SUCCESS;
 }
+
 bool MCCSWrite(CGDirectDisplayID displayID, struct MCCSWriteCommand *write) {
     IOI2CRequest request = {};
     request.commFlags = kIOI2CUseSubAddressCommFlag;
@@ -112,6 +113,7 @@ bool MCCSWrite(CGDirectDisplayID displayID, struct MCCSWriteCommand *write) {
     bool result = DisplayRequest(displayID, &request);
     return result;
 }
+
 bool MCCSRead(CGDirectDisplayID displayID, struct MCCSReadCommand *read) {
     IOI2CRequest request = {};
     UInt8 reply_data[11] = {};
@@ -136,31 +138,6 @@ bool MCCSRead(CGDirectDisplayID displayID, struct MCCSReadCommand *read) {
     read->max_value = reply_data[7];
     read->current_value = reply_data[9];
     return result;
-}
-bool EDIDTest(CGDirectDisplayID displayID, struct EDID *edid) {
-    IOI2CRequest request = {};
-    UInt8 data[128] = {};
-    request.sendAddress = 0xA0;
-    request.sendTransactionType = kIOI2CSimpleTransactionType;
-    request.sendBuffer = (vm_address_t) data;
-    request.sendBytes = 0x01;
-    data[0] = 0x00;
-    request.replyAddress = 0xA1;
-    request.replyTransactionType = kIOI2CSimpleTransactionType;
-    request.replyBuffer = (vm_address_t) data;
-    request.replyBytes = sizeof(data);
-    if (!DisplayRequest(displayID, &request)) return false;
-    if (edid) memcpy(edid, &data, 128);
-    UInt32 i = 0;
-    UInt8 sum = 0;
-    while (i < request.replyBytes) {
-        if (i % 128 == 0) {
-            if (sum) break;
-            sum = 0;
-        }
-        sum += data[i++];
-    }
-    return !sum;
 }
 
 int MCCSGetCapabilityString(CGDirectDisplayID displayID, char** ppCapabilityString) {

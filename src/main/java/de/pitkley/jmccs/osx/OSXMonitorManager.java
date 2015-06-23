@@ -1,10 +1,14 @@
-package de.pitkley.jmccs.monitor;
+package de.pitkley.jmccs.osx;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
+import de.pitkley.jmccs.monitor.Monitor;
+import de.pitkley.jmccs.monitor.MonitorManager;
+import de.pitkley.jmccs.monitor.UnsupportedOperatingSystemException;
+import de.pitkley.jmccs.monitor.VCPStringFormatException;
 
 import java.util.ArrayList;
 import java.util.List;

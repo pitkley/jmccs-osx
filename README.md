@@ -11,8 +11,8 @@ As this is a Maven project, you can include this project in your application sim
 
 ```xml
 <dependency>
-    <groupId>de.pitkley.jmccs</groupId>
-    <artifactId>osx</artifactId>
+    <groupId>de.pitkley</groupId>
+    <artifactId>jmccs-osx</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```

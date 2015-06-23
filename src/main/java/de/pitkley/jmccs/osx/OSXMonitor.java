@@ -1,7 +1,8 @@
-package de.pitkley.jmccs.monitor;
+package de.pitkley.jmccs.osx;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
+import de.pitkley.jmccs.monitor.*;
 
 import java.io.IOException;
 import java.util.Map;

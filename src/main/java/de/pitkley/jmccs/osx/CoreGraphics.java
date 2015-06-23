@@ -1,4 +1,4 @@
-package de.pitkley.jmccs.monitor;
+package de.pitkley.jmccs.osx;
 
 import com.sun.jna.IntegerType;
 import com.sun.jna.Library;

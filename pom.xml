@@ -39,6 +39,7 @@
             <groupId>de.pitkley.jmccs</groupId>
             <artifactId>jmccs</artifactId>
             <version>0.2.0</version>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>net.java.dev.jna</groupId>
@@ -165,6 +166,17 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
         </plugins>
